@@ -1,18 +1,17 @@
+<html>
+<body>
 <?php
 $errmsg_arr = array();
 $errflag = false;
 // configuration
-$dbhost 	= "localhost";
-$dbname		= "kalyani";
-$dbuser		= "root";
-$dbpass		= "1234";
+include 'dbconfig.php';
 $activityname = $_POST['activityname'];
+
 try {
 if (empty($activityname)) {
-
-  header('Location:http://ec2-52-34-93-209.us-west-2.compute.amazonaws.com/todo/home.php');
-
+  header('Location: http://localhost/TODO/home.php');
 } else {
+  
 	// database connection
 	$conn = new PDO("mysql:host=$dbhost;dbname=$dbname",$dbuser,$dbpass);
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -22,7 +21,7 @@ if (empty($activityname)) {
 	$stmt->bindParam(':name', $activityname, PDO::PARAM_STR);
   	
 	$stmt->execute();
-	header('Location:http://ec2-52-34-93-209.us-west-2.compute.amazonaws.com/todo/home.php');
+	header('Location: http://localhost/TODO/home.php');
 }
 	}
 catch(PDOException $e)
@@ -30,3 +29,5 @@ catch(PDOException $e)
 		echo "Connection failed: " . $e->getMessage();
     }$conn = null;
 ?>
+</body>
+</html>
