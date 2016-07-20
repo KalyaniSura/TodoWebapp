@@ -142,15 +142,17 @@ function ajaxFunction(){
 						window.location.href = url;
 					 }
 				</script>
-				<form  action="update.php" method=\"get\">
+				<form  action="update.php" method="get">
 				<?php
-				    
-					include 'PendingActivities.php';
+
+					    
+					include 'pendingActivities.php';
                     echo selecting();
 				?>
 				</form>
 				</div>
 				<?Php
+								    
 					include 'finishedActivities.php';
                     echo selecting1();
 				?>

@@ -10,7 +10,7 @@ try {
     $stmt = $conn->prepare("update todoactivities set status='finished' where name =:name");
 	$stmt->bindParam(':name', $name, PDO::PARAM_STR);
 	$stmt->execute();
-	header('Location: http://localhost/TODO/home.php');
+	header('Location:http://ec2-52-34-93-209.us-west-2.compute.amazonaws.com/TodoWebapp/home.php');
 
 	}
 catch(PDOException $e)
