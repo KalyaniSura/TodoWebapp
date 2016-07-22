@@ -99,8 +99,107 @@ function ajaxFunction(){
    var binding = "?activityname=" + activityname ;
    
    ajaxRequest.open("GET", "getActivitiesData.php" + binding, true);
+   document.getElementById("activityname").value="";
    ajaxRequest.send(null); 
 }
+
+// clearing finished activities
+
+function ClearingData(){
+   var ajaxRequest;  // The variable that makes Ajax possible!
+   try{
+   
+      // Opera 8.0+, Firefox, Safari
+      ajaxRequest = new XMLHttpRequest();
+   }catch (e){
+      
+      // Internet Explorer Browsers
+      try{
+         ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }catch (e) {
+         
+         try{
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }catch (e){
+         
+            // Something went wrong
+            alert("Your browser broke!");
+            return false;
+         }
+      }
+   }
+   
+   // Create a function that will receive data
+   // sent from the server and will update
+   // div section in the same page.
+   ajaxRequest.onreadystatechange = function(){
+   
+      if(ajaxRequest.readyState == 4){
+         var ajaxDisplay = document.getElementById('ajaxDiv');
+         ajaxDisplay.innerHTML = ajaxRequest.responseText;
+      }
+   }
+   
+   // Now get the value from user and pass it to
+   // server script.
+   //var activityname = document.getElementById('activityname').value;
+   
+   //var binding = "?activityname=" + activityname ;
+   
+   ajaxRequest.open("GET", "clear.php" , true);
+   ajaxRequest.send(null); 
+}
+
+
+//updating data
+function UpdateData(checkbox){
+
+   var ajaxRequest;  // The variable that makes Ajax possible!
+   try{
+   
+      // Opera 8.0+, Firefox, Safari
+      ajaxRequest = new XMLHttpRequest();
+   }catch (e){
+      
+      // Internet Explorer Browsers
+      try{
+         ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }catch (e) {
+         
+         try{
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }catch (e){
+         
+            // Something went wrong
+            alert("Your browser broke!");
+            return false;
+         }
+      }
+   }
+   
+   // Create a function that will receive data
+   // sent from the server and will update
+   // div section in the same page.
+   ajaxRequest.onreadystatechange = function(){
+   
+      if(ajaxRequest.readyState == 4){
+         var ajaxDisplay = document.getElementById('ajaxDiv');
+         ajaxDisplay.innerHTML = ajaxRequest.responseText;
+      }
+   }
+   
+   // Now get the value from user and pass it to
+   // server script.
+   //var activityname = document.getElementById('activityname').value;
+   var activityname=checkbox;
+   var binding = "?activityname=" + activityname ;
+   
+   ajaxRequest.open("GET", "updatedata.php" + binding, true);
+   ajaxRequest.send(null); 
+}
+
+
+
 		  </script>
 	
 	</head>
@@ -110,11 +209,12 @@ function ajaxFunction(){
 		     <center><h1><font color="white">Todo</font></h1></center>
 		    </div>
 		    <div class="jumbotron" id="place">
-			
+			    
 					<form  name="myForm" id="id1">
 						 <input type="text" name="activityname" id="activityname" placeholder="Create Some Tasks ... " />
 						 <input type='button' id="button-add" onclick='ajaxFunction()'/>
 					</form>
+				
 					<div id='ajaxDiv'>
 				  <?php
                     echo '<button type="button" class="btn btn-primary">all tasks :&nbsp&nbsp' ;
@@ -149,15 +249,15 @@ function ajaxFunction(){
                     echo selecting();
 				?>
 				</form>
-				</div>
 				<?Php
 					include 'finishedActivities.php';
                     echo selecting1();
 				?>
-				
+				</div>
 				<br/>
-				<a href="clear.php"><h3 id="id1">Clear Completed Tasks</h3></a>
+				<a href="#" onclick="ClearingData()"><h3 id="id1">Clear Completed Tasks</h3></a>
             </div>
+			
 		</div>
         
 	</body>
