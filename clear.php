@@ -5,13 +5,22 @@
 	$password = "";
 	$dbname = "kalyani";
 
+<<<<<<< HEAD
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
+=======
+try {
+	// database connection
+    $stmt = $conn->prepare("delete from todoactivities where status='finished';");
+	$stmt->execute();
+	header('Location: http://ec2-52-34-93-209.us-west-2.compute.amazonaws.com/TodoWebapp/home.php');
+>>>>>>> 6c485252c1cf9037299b2d96337dff5c52437920
 
 	// Check connection
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
+<<<<<<< HEAD
     $dsql="delete from todoactivities where status='finished';";
 	$rslt=mysqli_query($conn,$dsql);
 	
@@ -64,3 +73,10 @@
 ?>
 
 
+=======
+catch(PDOException $e)
+    {
+		echo "Connection failed: " . $e->getMessage();
+    }$conn = null;
+?>
+>>>>>>> 6c485252c1cf9037299b2d96337dff5c52437920
