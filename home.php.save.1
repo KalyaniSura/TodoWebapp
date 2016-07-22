@@ -16,7 +16,7 @@
 
 		      #place {
 
-                     position: absolute;
+             position: absolute;
 
              top: 80px;
 
@@ -270,7 +270,7 @@ function ClearingData(){
 
       if(ajaxRequest.readyState == 4){
 
-         var ajaxDisplay = document.getElementById('ajaxDiv');
+         var ajaxDisplay = document.getElementById('clering');
 
          ajaxDisplay.innerHTML = ajaxRequest.responseText;
 
@@ -330,6 +330,7 @@ function ClearingData(){
 
 					</form>
 
+					<div id='clering'>
 
 					<div id='ajaxDiv'>
 
@@ -391,7 +392,7 @@ function ClearingData(){
 
 				    
 
-					include 'pendingActivities.php';
+					include 'PendingActivities.php';
 
                     echo selecting();
 
@@ -409,7 +410,7 @@ function ClearingData(){
 
 				?>
 
-			
+				</div>
 
 				<br/>
 
